@@ -1,0 +1,225 @@
+.EventListGrup {
+    padding: 0;
+}
+
+.containerEvento {
+    margin-bottom: 20px;
+    border-radius: 10px;
+    padding: 5%;
+    padding-bottom: 15px;
+    border-bottom: 2px solid #000000;
+}
+
+.containerEvento:hover {
+    box-shadow: 40px 0px 16px rgba(0, 0, 0, 0.583);
+}
+
+p {
+    text-align: justify;
+}
+
+section.section-fixed {
+    text-align: center;
+    background-color: #d1d0d0;
+    border-radius: 20px;
+    z-index: 9999;
+    padding: 10px;
+    position: fixed;
+    top: 13%;
+    left: 0;
+    width: 22%;
+    height: 80vh;
+    box-shadow: 4px 0px 0px 2px rgba(0, 0, 0, 0.2);
+    border-right: 4px solid rgba(0, 0, 0, 0.9);
+
+}
+
+/* SUGESTÕES */
+#eventos-sugeridos {
+    padding: 25px;
+    position: relative;
+}
+
+.nomeEventoSugest {
+    padding: 2px;
+    text-align: center;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.descricaoMostraSugest {
+    text-align: justify;
+    font-size: 18px;
+}
+
+.dataMostraSugest p {
+    text-align: right;
+    font-size: 14px;
+}
+
+.buttonInterationSugest {
+    justify-content: center;
+    align-items: center;
+    display: flex;
+}
+
+/* EVENTO MAPA */
+.title {
+    text-align: center;
+    font-size: 20px;
+    border-bottom: 2px solid #000000;
+    margin-bottom: 10px;
+}
+
+.title h2 {
+    font-size: 36px;
+    background: linear-gradient(45deg, #6f6e6c, #1f1f1f);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-size: 36px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    padding-bottom: 0;
+    margin-bottom: 0;
+    font-size: 36px;
+    overflow: hidden;
+    border-right: .15em solid rgb(100, 118, 108);
+    white-space: nowrap;
+    letter-spacing: .15em;
+    animation: typing 3.5s steps(40, end), blink-caret .75s step-end infinite;
+}
+
+@keyframes typing {
+    from {
+        width: 0
+    }
+
+    to {
+        width: 100%
+    }
+}
+
+@keyframes blink-caret {
+    from,
+    to {
+        border-color: transparent
+    }
+
+    50% {
+        border-color: rgb(8, 8, 8);
+    }
+}
+
+.left-section {
+    background-color: #FFFFFF;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    max-height: 80vh;
+    overflow: scroll;
+    flex: 1;
+}
+
+.left-section::-webkit-scrollbar {
+    width: 10px;
+    /* Largura do scroll */
+}
+
+.left-section::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    /* Cor do fundo do scroll */
+}
+
+.left-section::-webkit-scrollbar-thumb {
+    background: #888;
+    /* Cor do scroll */
+}
+
+.left-section::-webkit-scrollbar-thumb:hover {
+    background: #555;
+    /* Cor do scroll quando o mouse passa por cima */
+}
+
+.section-rigth {
+    right: 0;
+   border-radius: 20px;
+    z-index: 99;
+    padding: 10px;
+    margin-top: 5%;
+    display: flex;
+    width: 100%;
+    margin-left: 20%;
+}
+.section-mapa {
+    padding: 5px;
+    border: 1px solid rgba(0, 0, 0, 0.0);
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+    min-width: 60%;
+    height: 100%;
+    flex: 1;
+}
+
+/* CORPO EVENTOS innerHTML */
+.listaDeEventos {}
+
+.nomeEvento {
+    border-radius: 8px;
+    border: 2px 2px solid #000000a2;
+    border-style: none solid solid none;
+    text-align: center;
+    font-size: 22px;
+    font-weight: bold;
+}
+
+.nomeEvento h4 {
+    padding: 0;
+    margin: 0;
+}
+
+.descricaoMostra {
+    text-align: justify;
+    font-size: 18px;
+}
+
+.dataMostra p {
+    font-weight: bold;
+    text-align: right;
+    font-size: 14px;
+}
+
+.buttonInteration {
+    justify-content: center;
+    align-items: center;
+    display: flex;
+}
+
+/* Responsividade */
+
+@media (max-width: 768px) {
+    .section-rigth {
+        margin-left: 0;
+    }
+  
+    .section-mapa {
+        flex: 1;
+    }
+}
+
+@media (max-width: 480px) {
+    .section-rigth {
+        flex-direction: column;
+    }
+  
+    .left-section {
+        max-height: initial;
+        overflow: initial;
+        margin-bottom: 20px;
+    }
+  
+    .section-mapa {
+        height: auto;
+    }
+}
+@media (min-width:1400px){
+    section.section-fixed{
+        height: auto;
+    }
+}

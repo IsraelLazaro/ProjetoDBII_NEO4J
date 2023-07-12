@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event Maps</title>
+    <!-- MAPS -->
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+<!-- SCRIPT -->
+    <script type="module" src="../js/relacoes.js"></script>
+    <script type="module" src="../js/maps-CRUD.js"></script>
+
+<!-- CSS -->
+    <link rel="stylesheet" href="../css/cabecalho.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/listarEventos.css">
+    <link rel="stylesheet" href="../css/maps.css">
+    <link rel="stylesheet" href="../css/buttons-inputs.css">
+    <link rel="stylesheet" href="../css/cadastros-eventos.css">
+    
+    <script src="https://www.gstatic.com/firebasejs/8.2.7/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.7/firebase-auth.js"></script>
+<!-- Firebase -->
+    <script type="module" src="/js/login.js"></script>
+
+    
+
+
+</head>
+<!-- CABEÇALHO DA PÁGINA -->
+<header class="header">
+  <div class="logo">
+      <img id="logo-img" src="/img/logo.png" alt="Logo">
+  </div>
+  <nav class="navbar">
+      <ul class="nav-links">
+          <li class="li-i"><a href="/views/index.html"><img  src="/img/home.png" alt=""></a></li>
+          <li class="li-f"><a href="/views/eventos.html"><img src="/img/home-maps.png" alt=""></a></li>
+          <li class="li-f"><a href="#"><img src="/img/suporte.png" alt=""></a></li>
+          <li class="li-i"><a href="#"><img src="/img/informar.png" alt=""></a></li>
+      </ul>
+  </nav>
+  <div class="icon-user" >
+      <div class="user-circle" >
+          <span><img class="user" src="/img/user.png" alt=""></span>
+      </div>
+     
+          <div class="login-container" id="login-form"  style="display: none;">
+              <h1>Event Maps</h1>
+              <div class="container" >
+                  <h2>Entrar</h2>
+                  <form>
+                      <input type="email" id="login-email" placeholder="Email" required><br>
+                      <input type="password" id="login-password" placeholder="Senha" required>
+                      <button class="buttonLogin" id="button-login" type="submit">Entrar</button>
+                  </form>
+                      <div class="options">
+                          <a href="#" id="esqueceuSenha">Esqueceu a senha?</a>
+                          <a href="#" id="linkCadastro">Cadastrar usuário</a>
+                      </div>
+              </div>
+          </div>
+          <div class="login-container" id="register-form"  style="display: none;">
+              <div class="container">
+                  <h2>Cadastrar Usuário</h2>
+                  <form>
+                      <input type="text" id="register-name" placeholder="Nome" required><br>
+                      <input type="email" id="register-email"  placeholder="Email" required><br>
+                      <input type="password" id="register-password" placeholder="Senha" required>
+                      <input type="password" id="register-password-confirm" placeholder="Confirmar Senha" required>
+                      <button class="buttonLogin" type="submit" id="button-register">Cadastrar</button>
+                  </form>
+                  <div class="options">
+                      <a href="#" id="linkLogin">Já possui uma conta? Faça o login</a>
+                  </div>                
+              </div>
+          </div>
+          <div class="logado login-container" id="logado-form" style="display: none;">
+              <div>
+                  <h1>Bem vindo!</h1>
+                  <div id="user-profile"></div>
+                  <button class="buttonLogin" id="logout-button">Sair</button>
+              </div>
+          </div>
+          <div class="recover login-container" id="recover-form" style="display: none;">
+              <label for="email">E-mail Cadastrado</label>
+              <input type="email" id="email-recover" placeholder="Email" required><br>
+              <div class="options">
+                  <a href="#" id="linkLogin-recover">Já possui uma conta? Faça o login</a>
+              </div>
+              <button class="buttonLogin" type="submit" id="button-recover">RECUPERAR</button>
+          </div>
+  </div>
+</header>
+<body>
+    <main class="EventListGrup">
+        <section class="section-fixed">
+          <h1>EVENTOS QUE TALVEZ VOCÊ GOSTE</h1>
+            <div id="eventos-sugeridos" class="inserirEventos">
+            </div>
+        </section>
+        <section class="section-rigth" >
+            <section id="telaEventos" class="left-section" >
+                <div  class="formsList">
+                  <div class="title">
+                    <h2>EVENTOS CADASTRADOS</h2>  
+                    <input id="busca" class="inputPesquisa" type="text" name="pesquisa" placeholder="Buscar Evento...">             
+                  </div>
+                  
+                  <div id="listaDeEventos" class="inserirEventos">
+                  </div>
+                  <br>  
+                </div>
+              </section> 
+  <!-- TELA PARA ATUALIZAR OS EVENTOS - só aparece quando clicado no link "EDITAR" no link criado no JS -->
+          <section id="telaCadastro" class="left-section" style="display: none;">
+            <div class="telaDeCadastro edit">
+              <h2>EVENTO</h2>
+              <form class="tela-cadastro-evento" action="/novo" method="post" id="eventFormEdit">
+                <label for="author"></label>
+                <input type="text" name="author" id="author" placeholder="Responsável" required>
+                <label for="nomeEvento"></label>
+                <input type="text" name="nome" id="eventName" placeholder="Nome do evento" required>
+                <label class="data-label" for="dataInicio" style="opacity: 0.3;">Início</label>
+                <input type="date" name="nome" id="dataInicio" placeholder="dd-mm-yyyy" required>
+                <label class="data-label" for="dataTermino" style="opacity: 0.3;">Término</label>
+                <input type="date" name="nome" id="dataTermino" placeholder="dd-mm-yyyy" required>
+                <label for="coordenadas"></label>
+                <input type="text" name="nome" id="eventCoordinates" placeholder="Selecione no mapa" disabled="" style="display: none;" required>
+                <label for="descricao"></label>
+                <textarea maxlength="350" class="caixaTextoCadastro2" type="text" name="nome" id="eventDescription" placeholder="Descrição do evento em 350 caracteres ou menos"></textarea>
+                <div class="btnEdit ">
+                  <button id="btnAtualizar" type="button" class="cad"  method="POST" > ATUALIZAR </button>
+                  <button id="deletar" type="button" class="cad"  method="POST" > DELETAR </button>
+                  <a href="./eventos.html"><button id="back" type="button" class="cad"  method="POST" > VOLTAR </button></a>
+                </div>
+              </form>
+            </div>
+          </section> 
+          <section class="section-mapa" >              
+            <div id="map" class="maps"></div>           
+        </section>
+
+        </section>
+    </main>
+    <div id="alertBox" class="alert-box" style="display: none;"> 
+      <span class="close-button" onclick="fecharAlerta()">X</span>
+      <p id="alertMessage"></p>
+    </div>  
+     
+    <div id="overlay" class="overlay">
+      <div class="overlay-content">
+        <p class="overlay-text">Processando o login...</p>
+      </div>
+    </div>
+    <!-- prettier-ignore -->
+    <script src="https://maps.googleapis.com/maps/api/js?key="></script>
+
+
+</body>
+    
+</html>
